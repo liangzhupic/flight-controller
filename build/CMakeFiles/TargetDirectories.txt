@@ -1,0 +1,6 @@
+/home/liangzhu/stm32/test/build/Drivers/CMSIS/CMakeFiles/CMSIS.dir
+/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver/CMakeFiles/HAL.dir
+/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source/CMakeFiles/freertos.dir
+/home/liangzhu/stm32/test/build/CMakeFiles/test.elf.dir
+/home/liangzhu/stm32/test/build/CMakeFiles/test.elf.bin.dir
+/home/liangzhu/stm32/test/build/CMakeFiles/test.elf.hex.dir

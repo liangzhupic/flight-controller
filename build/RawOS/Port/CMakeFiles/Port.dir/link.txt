@@ -1,0 +1,2 @@
+/usr/bin/arm-none-eabi-ar cr libPort.a  CMakeFiles/Port.dir/port.c.obj CMakeFiles/Port.dir/port_hook.c.obj CMakeFiles/Port.dir/raw_trace_port.c.obj CMakeFiles/Port.dir/user_extension.c.obj CMakeFiles/Port.dir/cpu.asm.obj
+/usr/bin/arm-none-eabi-ranlib libPort.a
