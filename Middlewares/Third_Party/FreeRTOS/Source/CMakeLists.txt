@@ -3,6 +3,7 @@ CMSIS_RTOS
 include
 portable/GCC/ARM_CM4F
 ${CMAKE_SOURCE_DIR}/Drivers/CMSIS/Include
+${CMAKE_SOURCE_DIR}/Inc
 )
 
 

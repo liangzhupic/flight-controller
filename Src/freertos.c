@@ -49,6 +49,16 @@
 /* USER CODE BEGIN Includes */     
 
 #include "gpio.h"
+#include "spi.h"
+#include "mpu9250.h"
+#include "mavlink.h"
+#include "ahrs.h"
+#include "semphr.h"
+#include "tim.h"
+#include "mavlink_user.h"
+
+//#include "mavlink_user.h"
+
 /* USER CODE END Includes */
 
 /* Variables -----------------------------------------------------------------*/
@@ -59,19 +69,20 @@ osThreadId defaultTaskHandle;
 BaseType_t LED_Blinky_t;
 TaskHandle_t LED_Blinky_handle=NULL;
 
-
+BaseType_t InitHardware;
+TaskHandle_t InitHardware_handle=NULL;
 /* USER CODE END Variables */
 
 /* Function prototypes -------------------------------------------------------*/
 void StartDefaultTask(void const * argument);
 
+extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
-
-
 
 /* USER CODE BEGIN FunctionPrototypes */
 
 void LED_Blinky(void* p);//on board led blinky
+void Init_Hardware(void *p);//setup hardware
 
 /* USER CODE END FunctionPrototypes */
 
@@ -81,8 +92,9 @@ void LED_Blinky(void* p);//on board led blinky
 
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
-       
-
+    AhrsTaskCreate();         //creater task of attitude e
+    mpu9250_task_create();
+    UltraSonicTaskCreate();
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -107,15 +119,29 @@ void MX_FREERTOS_Init(void) {
 
   LED_Blinky_t=xTaskCreate(LED_Blinky,
               "led_blinky",
-              1024,
+              512,
               (void*)1 ,
-             20,
+              5,
               &LED_Blinky_handle
               );
-  if(LED_Blinky_t ==!pdPASS)
+  if(LED_Blinky_t =!pdPASS)
   {
       vTaskDelete(LED_Blinky_handle);
   }
+
+
+  LED_Blinky_t=xTaskCreate(Init_Hardware,
+              "init hardware",
+              512,
+              (void*)1 ,
+              20,
+              &InitHardware_handle
+              );
+  if(LED_Blinky_t =!pdPASS)
+  {
+      vTaskDelete(LED_Blinky_handle);
+  }
+
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_QUEUES */
@@ -126,32 +152,98 @@ void MX_FREERTOS_Init(void) {
 /* StartDefaultTask function */
 void StartDefaultTask(void const * argument)
 {
+  /* init code for USB_DEVICE */
+  MX_USB_DEVICE_Init();
 
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
   for(;;)
   {
-//      HAL_GPIO_WritePin(GPIOD,GPIO_PIN_15,GPIO_PIN_SET);
-//    osDelay(50);
-//    HAL_GPIO_WritePin(GPIOD,GPIO_PIN_15,GPIO_PIN_RESET);
-//    osDelay(50);
+
 
   }
   /* USER CODE END StartDefaultTask */
 }
 
 /* USER CODE BEGIN Application */
-     
+void Init_Hardware(void *p)
+{
+  /* */
+
+    __HAL_TIM_SET_COUNTER ( &htim2, 0);
+    HAL_TIM_OC_Start_IT(&htim2, TIM_CHANNEL_1);
+    HAL_TIM_OC_Start_IT(&htim2, TIM_CHANNEL_2);
+    HAL_TIM_OC_Start_IT(&htim2, TIM_CHANNEL_3);
+    HAL_TIM_OC_Start_IT(&htim2, TIM_CHANNEL_4);
+
+    HAL_TIM_Base_Start_IT(&htim6); //2khz event
+
+    HAL_Delay(50);
+    InitMpu9250();
+
+
+    Gyro.offset.x=-0.913154;
+    Gyro.offset.y=-0.004481;
+    Gyro.offset.z=0.343141;
+
+  /*  Gyro.offset.x=0;
+    Gyro.offset.y=0;
+    Gyro.offset.z=0;
+    HAL_Delay(8000);
+
+    for(int a=1;a<=5000;a++)
+    {
+    ReadMpuAllBloack();
+    Gyro.offset.x+=(float)Gyro.x*2000/32768;
+    Gyro.offset.y+=(float)Gyro.y*2000/32768;
+    Gyro.offset.z+=(float)Gyro.z*2000/32768;
+    HAL_Delay(2);
+    }
+
+    Gyro.offset.x/=5000;
+    Gyro.offset.y/=5000;
+    Gyro.offset.z/=5000;*/
+
+ /*   AhrsTaskCreate();         //creater task of attitude e
+    mpu9250_task_create();*/
+
+    vTaskDelete(NULL);
+
+}
+
 void LED_Blinky(void* p)
+{
+
+    while(1)
+    {
+
+         HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_5);
+//         if(1==mpu_read_who_am_i())
+//         {
+           HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_6);
+//         }
+
+       static TimeCounter_t t;
+       TimeCounter(&t,1);
+       vTaskDelay(100);
+       TimeCounter(&t,2);
+//        HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0);
+
+       heartbeat();  //mavlink
+
+
+    }
+}
+
+void vApplicationStackOverflowHook(TaskHandle_t xTask,
+                                   signed char *pcTaskName)
 {
     while(1)
     {
-        HAL_GPIO_WritePin(GPIOD,GPIO_PIN_15,GPIO_PIN_SET);
-        osDelay(400);
-//        vTaskDelay();
-        HAL_GPIO_WritePin(GPIOD,GPIO_PIN_15,GPIO_PIN_RESET);
-        osDelay(200);
-
+        HAL_GPIO_WritePin(GPIOE,GPIO_PIN_4,RESET);
+        HAL_GPIO_WritePin(GPIOE,GPIO_PIN_5,RESET);
+        HAL_Delay(100);
+        HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_6);
     }
 }
 

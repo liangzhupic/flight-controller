@@ -10,6 +10,9 @@ Src/stm32f4xx_hal_cortex.c             Src/stm32f4xx_hal_tim.c
 Src/stm32f4xx_hal_dma.c       Src/stm32f4xx_hal_pcd.c            Src/stm32f4xx_hal_tim_ex.c
 Src/stm32f4xx_hal_dma_ex.c    Src/stm32f4xx_hal_pcd_ex.c         Src/stm32f4xx_hal_uart.c
 Src/stm32f4xx_hal_flash.c     Src/stm32f4xx_hal_pwr.c            Src/stm32f4xx_ll_usb.c
-Src/stm32f4xx_hal_flash_ex.c  Src/stm32f4xx_hal_pwr_ex.c
+Src/stm32f4xx_hal_flash_ex.c  Src/stm32f4xx_hal_pwr_ex.c      Src/stm32f4xx_hal_i2c_ex.c
+Src/stm32f4xx_hal_i2c.c
 
 )
+
+

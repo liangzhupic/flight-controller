@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * File Name          : TIM.h
-  * Description        : This file provides code for the configuration
-  *                      of the TIM instances.
+  * @file           : USB_DEVICE  
+  * @version        : v1.0_Cube
+  * @brief          : This file implements the USB Device 
   ******************************************************************************
   *
   * Copyright (c) 2016 STMicroelectronics International N.V. 
@@ -40,62 +40,32 @@
   * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
   ******************************************************************************
-  */
-/* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __tim_H
-#define __tim_H
-#ifdef __cplusplus
- extern "C" {
-#endif
+*/
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal.h"
-#include "main.h"
 
-/* USER CODE BEGIN Includes */
- typedef struct timer_counter
- {
-     long start;
-     long stop;
-     long interval;
- }TimeCounter_t;
+#include "usb_device.h"
+#include "usbd_core.h"
+#include "usbd_desc.h"
+#include "usbd_cdc.h"
+#include "usbd_cdc_if.h"
 
+/* USB Device Core handle declaration */
+USBD_HandleTypeDef hUsbDeviceFS;
 
-/* USER CODE END Includes */
+/* init function */				        
+void MX_USB_DEVICE_Init(void)
+{
+  /* Init Device Library,Add Supported Class and Start the library*/
+  USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS);
 
-extern TIM_HandleTypeDef htim1;
-extern TIM_HandleTypeDef htim2;
-extern TIM_HandleTypeDef htim5;
-extern TIM_HandleTypeDef htim6;
-extern TIM_HandleTypeDef htim8;
+  USBD_RegisterClass(&hUsbDeviceFS, &USBD_CDC);
 
-/* USER CODE BEGIN Private defines */
+  USBD_CDC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS);
 
-void TimeCounter(TimeCounter_t *,int);
-void Delayus(uint16_t );
+  USBD_Start(&hUsbDeviceFS);
 
-/* USER CODE END Private defines */
-
-extern void Error_Handler(void);
-
-void MX_TIM1_Init(void);
-void MX_TIM2_Init(void);
-void MX_TIM5_Init(void);
-void MX_TIM6_Init(void);
-void MX_TIM8_Init(void);
-                    
-void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
-                                                
-
-/* USER CODE BEGIN Prototypes */
-
-/* USER CODE END Prototypes */
-
-#ifdef __cplusplus
 }
-#endif
-#endif /*__ tim_H */
-
 /**
   * @}
   */

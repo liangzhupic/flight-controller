@@ -45,13 +45,19 @@
 #include "stm32f4xx_hal.h"
 #include "cmsis_os.h"
 #include "adc.h"
+#include "dma.h"
+#include "i2c.h"
 #include "spi.h"
 #include "tim.h"
 #include "usart.h"
-#include "usb_otg.h"
+#include "usb_device.h"
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
+#include "semphr.h"
+#include "ahrs.h"
+#include "esc.h"
+#include "ppm_capure.h"
 
 /* USER CODE END Includes */
 
@@ -74,6 +80,54 @@ void MX_FREERTOS_Init(void);
 
 /* USER CODE BEGIN 0 */
 
+
+HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if(htim->Instance==TIM8)
+    {
+        Esc_Callback_TIM8(htim);
+    }
+    if(htim->Instance==TIM5)
+    {
+        Esc_Callback_TIM5(htim);
+    }
+    static  BaseType_t TaskWoken=pdTRUE;
+    if(htim->Instance==TIM2)
+    {
+        if(htim->Channel==HAL_TIM_ACTIVE_CHANNEL_1)// 2000 hz
+        {
+         uint32_t delay_new = __HAL_TIM_GET_COMPARE(&htim2, TIM_CHANNEL_1);
+          __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, delay_new + 500);
+//   xSemaphoreGiveFromISR(ahrs_sem,&TaskWoken);
+        }
+        if(htim->Channel==HAL_TIM_ACTIVE_CHANNEL_2)// 1000 hz
+        {
+         uint32_t delay_new = __HAL_TIM_GET_COMPARE(&htim2, TIM_CHANNEL_2);
+          __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, delay_new + 1000);
+
+        }
+        if(htim->Channel==HAL_TIM_ACTIVE_CHANNEL_3)// 500 hz
+        {
+         uint32_t delay_new = __HAL_TIM_GET_COMPARE(&htim2, TIM_CHANNEL_3);
+          __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, delay_new + 2000);
+         // user task woken
+          xSemaphoreGiveFromISR(ahrs_sem,&TaskWoken);
+
+        }
+        if(htim->Channel==HAL_TIM_ACTIVE_CHANNEL_4)// 50 hz
+        {
+         uint32_t delay_new = __HAL_TIM_GET_COMPARE(&htim2, TIM_CHANNEL_4);
+          __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_4, delay_new + 500000);
+         HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_4);
+         ahrs_count_sec=ahrs_count;
+         ahrs_count=0;
+         gyro_count_sec=gyro_count;
+         gyro_count=0;
+        }
+        portYIELD_FROM_ISR(TaskWoken );
+    }
+}
+
 /* USER CODE END 0 */
 
 int main(void)
@@ -93,24 +147,26 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_ADC1_Init();
   MX_ADC2_Init();
   MX_ADC3_Init();
   MX_SPI1_Init();
   MX_SPI2_Init();
   MX_TIM1_Init();
-  MX_TIM3_Init();
-  MX_TIM4_Init();
   MX_TIM5_Init();
   MX_TIM8_Init();
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
-  MX_USB_OTG_FS_PCD_Init();
+  MX_I2C1_Init();
+  MX_TIM2_Init();
+  MX_TIM6_Init();
 
   /* USER CODE BEGIN 2 */
-
-
+  InitAttitudePid();
+  Motor_Setup();
+  printf("**** Hardware init finish ****");
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
@@ -123,16 +179,11 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-//  int a=0,b,c=2;
   while (1)
   {
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-      HAL_GPIO_WritePin(GPIOD,GPIO_PIN_15,GPIO_PIN_SET);
-//         HAL_Delay(100);
-//       HAL_GPIO_WritePin(GPIOD,GPIO_PIN_15,GPIO_PIN_RESET);
-//       HAL_Delay(100);
 
   }
   /* USER CODE END 3 */
@@ -209,13 +260,36 @@ void SystemClock_Config(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 /* USER CODE BEGIN Callback 0 */
+//    static BaseType_t TaskWoken;
+//    TaskWoken = pdTRUE;
+       static  BaseType_t TaskWoken=pdTRUE;
+
+    if(htim->Instance==TIM9) // clock for attitude esmation  500hz
+    {
+//       xSemaphoreGiveFromISR(ahrs_sem,&TaskWoken);
+//       portYIELD_FROM_ISR( TaskWoken );// run context switch
+    }
 
 /* USER CODE END Callback 0 */
   if (htim->Instance == TIM7) {
     HAL_IncTick();
   }
 /* USER CODE BEGIN Callback 1 */
+   if(htim->Instance == TIM5)
+   {
 
+   }
+   if(htim->Instance == TIM8)
+   {
+
+   }
+   if(htim->Instance == TIM6)
+   {
+       // user task woken
+//      xSemaphoreGiveFromISR(ahrs_sem,&TaskWoken);
+   }
+
+//    portYIELD_FROM_ISR(TaskWoken );
 /* USER CODE END Callback 1 */
 }
 
@@ -230,6 +304,10 @@ void Error_Handler(void)
   /* User can add his own implementation to report the HAL error return state */
   while(1) 
   {
+      HAL_GPIO_WritePin(GPIOE,GPIO_PIN_4,GPIO_PIN_SET);
+      HAL_Delay(50);
+      HAL_GPIO_WritePin(GPIOE,GPIO_PIN_4,GPIO_PIN_RESET);
+      HAL_Delay(50);
   }
   /* USER CODE END Error_Handler */ 
 }

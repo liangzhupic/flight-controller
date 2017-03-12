@@ -1,3 +1,0 @@
-# Hashes of file build rules.
-9a9af14a811afea985abb1ed2b4fc36a CMakeFiles/test.elf.bin
-0ea381af6059f442f2b3268522ac1a55 CMakeFiles/test.elf.hex
