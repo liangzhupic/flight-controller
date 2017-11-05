@@ -45,10 +45,7 @@ void mpu9250_task_create(void)
 
 void ReadMpuAllBloack(void)
 {
-    mpu_read_block(ACCEL_XOUT_H,Acc.raw_data,6);
-    Acc.x=((uint16_t)Acc.raw_data[0]<<8)|Acc.raw_data[1];
-    Acc.y=((uint16_t)Acc.raw_data[2]<<8)|Acc.raw_data[3];
-    Acc.z=((uint16_t)Acc.raw_data[4]<<8)|Acc.raw_data[5];
+
 
     //magnetometer
 
@@ -67,6 +64,12 @@ void ReadMpuAllBloack(void)
       Gyro.x=((uint16_t)Gyro.raw_data[0]<<8)|Gyro.raw_data[1];
       Gyro.y=((uint16_t)Gyro.raw_data[2]<<8)|Gyro.raw_data[3];
       Gyro.z=((uint16_t)Gyro.raw_data[4]<<8)|Gyro.raw_data[5];
+
+      Delayus(10);
+      mpu_read_block(ACCEL_XOUT_H,Acc.raw_data,6);
+      Acc.x=((uint16_t)Acc.raw_data[0]<<8)|Acc.raw_data[1];
+      Acc.y=((uint16_t)Acc.raw_data[2]<<8)|Acc.raw_data[3];
+      Acc.z=((uint16_t)Acc.raw_data[4]<<8)|Acc.raw_data[5];
 
       exponential_moving_average(&Gyro.MovAver.x,Gyro.x,10);
       exponential_moving_average(&Gyro.MovAver.y,Gyro.y,10);
@@ -96,17 +99,24 @@ void InitMpu9250(void)
 {
  #define CONFIG 0x1a
     //gyroscope
+    Delayus(10);
+    mpu_configure(CONFIG, 3); //hardware low pass filter 184hz delay 2.9us
+    Delayus(10);
     mpu_configure(GYRO_CONFIG,0x18);
-    mpu_configure(CONFIG,3); //hardware low pass filter 184hz delay 2.9us
     Delayus(10);
 
-   // MAGNETOMETER
-    mpu_akm_write(CNTL2,1);
 
-    mpu_akm_write(CNTL1,0x12);
+   // MAGNETOMETER
+//    mpu_akm_write(CNTL2,1);
+
+//    mpu_akm_write(CNTL1,0x12);
 //        mpu_akm_write(ASTC,1<<6);     //self test
 
     //accelater
+    mpu_configure(ACC_CONFIG, 0x08);
+    Delayus(10);
+    mpu_configure(ACC_CONFIG2, 0x0d);
+//    mpu_configure();
 
 }
 
@@ -272,6 +282,7 @@ void mpu_write_block(uint8_t reg,uint8_t data,uint8_t len)
     uint8_t tran[1];
     while(HAL_SPI_GetState(&hspi1) != HAL_SPI_STATE_READY){}
     HAL_GPIO_WritePin(GPIOC,GPIO_PIN_4,GPIO_PIN_RESET);
+    Delayus(1);
     tran[0]=reg|WRITE;
     tran[1]=data;
     if(HAL_SPI_Transmit(&hspi1,&tran,len,50)!=HAL_OK)
@@ -287,6 +298,7 @@ void mpu_read_block(uint8_t reg, uint8_t *data,uint8_t len)
     reg=reg|READ;
     while(HAL_SPI_GetState(&hspi1) != HAL_SPI_STATE_READY){}
     HAL_GPIO_WritePin(GPIOC,GPIO_PIN_4,GPIO_PIN_RESET);
+    Delayus(1);
     if(HAL_SPI_Transmit(&hspi1,&reg,1,50)!=HAL_OK)
        {
            Error_Handler();

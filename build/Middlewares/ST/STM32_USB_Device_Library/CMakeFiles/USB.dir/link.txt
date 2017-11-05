@@ -1,0 +1,2 @@
+/home/liangzhu/compiler-arm-none-eabi/bin/arm-none-eabi-ar qc libUSB.a  CMakeFiles/USB.dir/Core/Src/usbd_core.c.obj CMakeFiles/USB.dir/Core/Src/usbd_ctlreq.c.obj CMakeFiles/USB.dir/Core/Src/usbd_ioreq.c.obj CMakeFiles/USB.dir/Class/CDC/Src/usbd_cdc.c.obj
+/home/liangzhu/compiler-arm-none-eabi/bin/arm-none-eabi-ranlib libUSB.a

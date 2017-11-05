@@ -56,6 +56,7 @@
 #include "semphr.h"
 #include "tim.h"
 #include "mavlink_user.h"
+#include <auto_mode.h>
 
 //#include "mavlink_user.h"
 
@@ -95,6 +96,8 @@ void MX_FREERTOS_Init(void) {
     AhrsTaskCreate();         //creater task of attitude e
     mpu9250_task_create();
     UltraSonicTaskCreate();
+    automode_init();
+
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -186,23 +189,23 @@ void Init_Hardware(void *p)
     Gyro.offset.y=-0.004481;
     Gyro.offset.z=0.343141;
 
-  /*  Gyro.offset.x=0;
+    Gyro.offset.x=0;
     Gyro.offset.y=0;
     Gyro.offset.z=0;
-    HAL_Delay(8000);
+    HAL_Delay(6000);
 
-    for(int a=1;a<=5000;a++)
+    for(int a=1;a<=500;a++)
     {
     ReadMpuAllBloack();
-    Gyro.offset.x+=(float)Gyro.x*2000/32768;
-    Gyro.offset.y+=(float)Gyro.y*2000/32768;
-    Gyro.offset.z+=(float)Gyro.z*2000/32768;
+    Gyro.offset.x+=(float)Gyro.x;
+    Gyro.offset.y+=(float)Gyro.y;
+    Gyro.offset.z+=(float)Gyro.z;
     HAL_Delay(2);
     }
 
-    Gyro.offset.x/=5000;
-    Gyro.offset.y/=5000;
-    Gyro.offset.z/=5000;*/
+    Gyro.offset.x/=500;
+    Gyro.offset.y/=500;
+    Gyro.offset.z/=500;
 
  /*   AhrsTaskCreate();         //creater task of attitude e
     mpu9250_task_create();*/

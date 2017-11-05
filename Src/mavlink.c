@@ -6,12 +6,14 @@
 #include "ppm_capure.h"
 #include "ahrs.h"
 #include "ultrasonic.h"
+#include "attitude_controll.h"
+#include <auto_mode.h>
 
 extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart1;
 extern DMA_HandleTypeDef hdma_usart1_rx;
 extern DMA_HandleTypeDef hdma_usart1_tx;
-
+extern float thr;
 
 mavlink_system_t mavlink_system;
 #define MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -68,14 +70,14 @@ void heartbeat(void)
 
     HAL_UART_Transmit(&huart1,buf,len,10);
 //    vTaskDelay(1);
-    mavlink_msg_raw_imu_pack(mavlink_system.sysid,mavlink_system.compid,&msg,time,Acc.x,Acc.y,Acc.z,Gyro.x,Gyro.y,Gyro.z,Mag.x,Mag.y,Mag.z);
+    mavlink_msg_raw_imu_pack(mavlink_system.sysid,mavlink_system.compid,&msg,time,Acc.x,Acc.y,Acc.z, Gyro.x- (int)Gyro.offset.x, Gyro.y- (int)Gyro.offset.y, Gyro.z- (int)Gyro.offset.z, (int)heart_beat_c, auto_dx, auto_dy);
      len = mavlink_msg_to_send_buffer(buf, &msg);
     HAL_UART_Transmit(&huart1,buf,len,1000);
     mavlink_msg_rc_channels_pack(mavlink_system.sysid,mavlink_system.compid,&msg,time,12,ppm[0].value,ppm[1].value,ppm[2].value,
-            ppm[3].value,ppm[4].value,ppm[5].value,ppm[6].value,ppm[7].value,ppm[8].value,ppm[9].value,(uint16_t)(EulerAngle.pitch*57),1,2,3,Esc[4].pulse,Esc[3].pulse,Esc[2].pulse,Esc[1].pulse,95);
+            ppm[3].value,ppm[4].value,ppm[5].value,ppm[6].value,ppm[7].value,ppm[8].value,ppm[9].value,(uint16_t)(EulerAngle.pitch*57),(uint16_t)(Gyro.offset.x+1000),(uint16_t)(Gyro.offset.y+ 1000),(uint16_t)(Gyro.offset.z+ 1000),Esc[4].pulse,Esc[3].pulse,Esc[2].pulse,Esc[1].pulse,95);
     len = mavlink_msg_to_send_buffer(buf, &msg);
     HAL_UART_Transmit(&huart1,buf,len,1000);
-    mavlink_msg_attitude_pack(mavlink_system.sysid,mavlink_system.compid,&msg,time,EulerAngle.roll,EulerAngle.pitch,EulerAngle.yaw,(float)gyro_count_sec,Gyro.offset.x,ultrasonic.speed);
+    mavlink_msg_attitude_pack(mavlink_system.sysid,mavlink_system.compid,&msg,time,EulerAngle.roll, EulerAngle.pitch, EulerAngle.yaw, dp_speed, position_x_out, position_y_out);
     len = mavlink_msg_to_send_buffer(buf, &msg);
     HAL_UART_Transmit(&huart1,buf,len,1000);
 //    mavlink_msg_altitude_pack(mavlink_system.sysid,mavlink_system.compid,&msg,time,)

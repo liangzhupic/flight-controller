@@ -35,30 +35,30 @@ float PidCalulation(_pid_t *pid,float error,float differential)
   pid->time.previous=pid->time.now;
   float real_dt=((float)pid->time.interval)/1000000; //convert to unit second
 
-   real_dt=0.002f;// 500hz
+//   real_dt=0.002f;// 500hz
 
-  float P=pid->kp*error;
+  float P= pid->kp* error;
 
-  pid->integral+=error*pid->ki*real_dt;
+  pid->integral += error* pid->ki* real_dt;
   float I=pid->integral;
 
-  if(pid->integral>pid->imax)
+  if(pid->integral> pid->imax)
   {
       I=pid->imax;
   }
-  if((-pid->imax)>pid->integral)
+  if((-pid->imax)> pid->integral)
   {
-      I=-pid->imax;
+      I= -pid->imax;
   }
   float D;
-  if(pid->mode==user_diff)
+  if(pid->mode == user_diff)
   {
       D=differential*pid->kd;
   }
-  if(pid->mode==normol)
+  if(pid->mode == normol)
   {
-      D=((error-pid->previous_error)/real_dt)*pid->kd;
+      D=((error- pid->previous_error)/ real_dt)* pid->kd;
   }
-  pid->previous_error=error;
-  return P+I+D;
+  pid->previous_error = error;
+  return P+ I- D;
 }

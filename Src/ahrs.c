@@ -27,6 +27,11 @@ void attitude_estimation(ahrs_sensor *acc, ahrs_sensor *gyro, ahrs_sensor *mag)
 volatile float beta = betaDef;								// 2 * proportional gain (Kp)
 volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;	// quaternion of sensor frame relative to auxiliary frame
  struct euler EulerAngle;
+float acc_normol= 0, acc_vertical = 0;
+
+struct ref_g_t ref_g;
+
+
 
 
 //---------------------------------------------------------------------------------------------------
@@ -69,12 +74,21 @@ void AhrsTask(void *p)
            ReadMpuAllBloack();
 
            IMUCalulation(&Acc,&Gyro,&NormoliseQuaternion);
+           ref_g.x = 2*(NormoliseQuaternion.q1*NormoliseQuaternion.q3 - NormoliseQuaternion.q0*NormoliseQuaternion.q2);
+           ref_g.y = 2*(NormoliseQuaternion.q0*NormoliseQuaternion.q1 + NormoliseQuaternion.q2*NormoliseQuaternion.q3);
+           ref_g.z = 1 - 2*(NormoliseQuaternion.q1*NormoliseQuaternion.q1 + NormoliseQuaternion.q2*NormoliseQuaternion.q2);
+
+           acc_normol = acc_normol * 0.98 + (ref_g.x * Acc.x + ref_g.y * Acc.y + ref_g.z * Acc.z)* 0.02;
+           acc_vertical = (8.0/65536)* acc_normol - 1.08;
+
 //           AHRSCalulation(&Acc,&Gyro,&Mag,&NormoliseQuaternion);
            float gx=(Gyro.x*2000/32768)/57.3;
            float gy=Gyro.y*2000/32768/57.3;
            float gz=Gyro.z*2000/32768/57.3;
 //           AHRSupdate(gx,gy,gz, Acc.x,Acc.y,Acc.z,Mag.x,Mag.y,Mag.z,&NormoliseQuaternion);
            GetEulerAngle(&NormoliseQuaternion);
+
+//           acc_vertical = (8.0/65536)* acc_normol/ sqrt(1 + sin(EulerAngle.pitch)* sin(EulerAngle.pitch) + sin(EulerAngle.roll)* sin(EulerAngle.roll));
            ahrs_count++;
            TimeCounter(&t,2);
 //           HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0);
@@ -102,9 +116,9 @@ GetEulerAngle(quaternion * q)
 
 void AHRSCalulation(ahrs_sensor *acc, ahrs_sensor *gyro ,ahrs_sensor *mag,quaternion *q) {
     /*******init variables****************/
-    float ax=0;//acc->x;
-    float ay=0;//acc->y;
-    float az=0;//acc->z;
+    float ax=acc->x;
+    float ay=acc->y;
+    float az=acc->z;
     float gx=(float)gyro->x*2000/57.3/32768;;
     float gy=(float)gyro->y*2000/57.3/32768;;
     float gz=(float)gyro->z*2000/57.3/32768;;
@@ -224,9 +238,9 @@ void IMUCalulation(ahrs_sensor* acc,ahrs_sensor *gyro,quaternion *q) {
     float ax=acc->x;
     float ay=acc->y;
     float az=acc->z;
-    float gx=((float)gyro->x*2000/32768-gyro->offset.x)/57.3;
-    float gy=((float)gyro->y*2000/32768-gyro->offset.y)/57.3;
-    float gz=((float)gyro->z*2000/32768-gyro->offset.z)/57.3;
+    float gx=((float)gyro->x*2000/32768-gyro->offset.x*2000/32768)/57.3;
+    float gy=((float)gyro->y*2000/32768-gyro->offset.y*2000/32768)/57.3;
+    float gz=((float)gyro->z*2000/32768-gyro->offset.z*2000/32768)/57.3;
 
     float recipNorm;
     float s0, s1, s2, s3;
@@ -248,6 +262,8 @@ void IMUCalulation(ahrs_sensor* acc,ahrs_sensor *gyro,quaternion *q) {
         ay *= recipNorm;
         az *= recipNorm;
 
+
+
         // Auxiliary variables to avoid repeated arithmetic
         _2q0 = 2.0f * q0;
         _2q1 = 2.0f * q1;
@@ -268,7 +284,7 @@ void IMUCalulation(ahrs_sensor* acc,ahrs_sensor *gyro,quaternion *q) {
         s1 = _4q1 * q3q3 - _2q3 * ax + 4.0f * q0q0 * q1 - _2q0 * ay - _4q1 + _8q1 * q1q1 + _8q1 * q2q2 + _4q1 * az;
         s2 = 4.0f * q0q0 * q2 + _2q0 * ax + _4q2 * q3q3 - _2q3 * ay - _4q2 + _8q2 * q1q1 + _8q2 * q2q2 + _4q2 * az;
         s3 = 4.0f * q1q1 * q3 - _2q1 * ax + 4.0f * q2q2 * q3 - _2q2 * ay;
-        recipNorm = invSqrt(s0 * s0 + s1 * s1 + s2 * s2 + s3 * s3); // normalise step magnitude
+        recipNorm = invSqrt(s0 * s0 + s1 * s1 + s2 * s2 + s3 * s3)/8; // normalise step magnitude
         s0 *= recipNorm;
         s1 *= recipNorm;
         s2 *= recipNorm;

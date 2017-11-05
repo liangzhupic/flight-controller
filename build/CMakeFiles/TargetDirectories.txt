@@ -1,0 +1,17 @@
+/home/liangzhu/stm32/test/build/CMakeFiles/edit_cache.dir
+/home/liangzhu/stm32/test/build/CMakeFiles/test.elf.dir
+/home/liangzhu/stm32/test/build/CMakeFiles/test.elf.hex.dir
+/home/liangzhu/stm32/test/build/CMakeFiles/test.elf.bin.dir
+/home/liangzhu/stm32/test/build/CMakeFiles/rebuild_cache.dir
+/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver/CMakeFiles/rebuild_cache.dir
+/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver/CMakeFiles/edit_cache.dir
+/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver/CMakeFiles/HAL.dir
+/home/liangzhu/stm32/test/build/Drivers/CMSIS/CMakeFiles/edit_cache.dir
+/home/liangzhu/stm32/test/build/Drivers/CMSIS/CMakeFiles/rebuild_cache.dir
+/home/liangzhu/stm32/test/build/Drivers/CMSIS/CMakeFiles/CMSIS.dir
+/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source/CMakeFiles/rebuild_cache.dir
+/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source/CMakeFiles/edit_cache.dir
+/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source/CMakeFiles/freertos.dir
+/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library/CMakeFiles/edit_cache.dir
+/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library/CMakeFiles/rebuild_cache.dir
+/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library/CMakeFiles/USB.dir

@@ -66,10 +66,10 @@ void get_ppm_value(uint16_t pin)
                 ppm[ch].value=value;
                 if((ch==2)&&(value<1150))
                 {
-                    Esc[1].pulse=(uint16_t)125;
-                    Esc[2].pulse=(uint16_t)125;
-                    Esc[3].pulse=(uint16_t)125;
-                    Esc[4].pulse=(uint16_t)125;
+                    Esc[1].pulse=(uint16_t)1000;
+                    Esc[2].pulse=(uint16_t)1000;
+                    Esc[3].pulse=(uint16_t)1000;
+                    Esc[4].pulse=(uint16_t)1000;
                 }
             }
 

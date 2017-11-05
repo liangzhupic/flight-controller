@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="test" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\stm32-cmake\;CMake Files\..\..\stm32-cmake\cmake\;CMake Files\Drivers\;CMake Files\Drivers\STM32F4xx_HAL_Driver\;CMake Files\Drivers\CMSIS\;CMake Files\Middlewares\;CMake Files\Middlewares\Third_Party\;CMake Files\Middlewares\Third_Party\FreeRTOS\;CMake Files\Middlewares\Third_Party\FreeRTOS\Source\;CMake Files\Middlewares\ST\;CMake Files\Middlewares\ST\STM32_USB_Device_Library\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/home/liangzhu/stm32/test/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="edit_cache">
+         <Option working_dir="/home/liangzhu/stm32/test/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 edit_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="test.elf">
+         <Option output="/home/liangzhu/stm32/test/build/test.elf" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/liangzhu/stm32/test/build" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DSTM32F4" />
+            <Add option="-DSTM32F407xx" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/arm-none-eabi" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/backward" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include-fixed" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Device/ST/STM32F4xx/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/ST/STM32_USB_Device_Library/Core/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/include" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F" />
+            <Add directory="/home/liangzhu/stm32/test/mavlink-v1" />
+            <Add directory="/home/liangzhu/stm32/test/mavlink-v1/common" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 test.elf" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="test.elf/fast">
+         <Option output="/home/liangzhu/stm32/test/build/test.elf" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/liangzhu/stm32/test/build" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DSTM32F4" />
+            <Add option="-DSTM32F407xx" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/arm-none-eabi" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/backward" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include-fixed" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Device/ST/STM32F4xx/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/ST/STM32_USB_Device_Library/Core/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/include" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F" />
+            <Add directory="/home/liangzhu/stm32/test/mavlink-v1" />
+            <Add directory="/home/liangzhu/stm32/test/mavlink-v1/common" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 test.elf/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="test.elf.hex">
+         <Option working_dir="/home/liangzhu/stm32/test/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 test.elf.hex" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="test.elf.bin">
+         <Option working_dir="/home/liangzhu/stm32/test/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 test.elf.bin" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="/home/liangzhu/stm32/test/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 rebuild_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="HAL">
+         <Option output="/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver/libHAL.a" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver" />
+         <Option object_output="./" />
+         <Option type="2" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/arm-none-eabi" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/backward" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include-fixed" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Device/ST/STM32F4xx/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/../../Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Inc" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver/Makefile&quot;  VERBOSE=1 HAL" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="HAL/fast">
+         <Option output="/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver/libHAL.a" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver" />
+         <Option object_output="./" />
+         <Option type="2" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/arm-none-eabi" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/backward" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include-fixed" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Device/ST/STM32F4xx/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/../../Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Inc" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver/Makefile&quot;  VERBOSE=1 HAL/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/STM32F4xx_HAL_Driver/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="CMSIS">
+         <Option output="/home/liangzhu/stm32/test/build/Drivers/CMSIS/libCMSIS.a" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/liangzhu/stm32/test/build/Drivers/CMSIS" />
+         <Option object_output="./" />
+         <Option type="2" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/arm-none-eabi" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/backward" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include-fixed" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Device/ST/STM32F4xx/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/CMSIS/Makefile&quot;  VERBOSE=1 CMSIS" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/CMSIS/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/CMSIS/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/CMSIS/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="CMSIS/fast">
+         <Option output="/home/liangzhu/stm32/test/build/Drivers/CMSIS/libCMSIS.a" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/liangzhu/stm32/test/build/Drivers/CMSIS" />
+         <Option object_output="./" />
+         <Option type="2" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/arm-none-eabi" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/backward" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include-fixed" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Device/ST/STM32F4xx/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/CMSIS/Makefile&quot;  VERBOSE=1 CMSIS/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/CMSIS/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/CMSIS/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Drivers/CMSIS/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="freertos">
+         <Option output="/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source/libfreertos.a" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source" />
+         <Option object_output="./" />
+         <Option type="2" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/arm-none-eabi" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/backward" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include-fixed" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/include" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source/Makefile&quot;  VERBOSE=1 freertos" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="freertos/fast">
+         <Option output="/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source/libfreertos.a" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source" />
+         <Option object_output="./" />
+         <Option type="2" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/arm-none-eabi" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/backward" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include-fixed" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/include" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source/Makefile&quot;  VERBOSE=1 freertos/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/Third_Party/FreeRTOS/Source/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="USB">
+         <Option output="/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library/libUSB.a" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library" />
+         <Option object_output="./" />
+         <Option type="2" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/arm-none-eabi" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/backward" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include-fixed" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Device/ST/STM32F4xx/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/ST/STM32_USB_Device_Library/Core/Inc" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library/Makefile&quot;  VERBOSE=1 USB" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="USB/fast">
+         <Option output="/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library/libUSB.a" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library" />
+         <Option object_output="./" />
+         <Option type="2" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/arm-none-eabi" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/include/c++/5.2.1/backward" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include" />
+            <Add directory="/home/liangzhu/compiler-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/5.2.1/include-fixed" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Device/ST/STM32F4xx/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/CMSIS/Include" />
+            <Add directory="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc" />
+            <Add directory="/home/liangzhu/stm32/test/Middlewares/ST/STM32_USB_Device_Library/Core/Inc" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library/Makefile&quot;  VERBOSE=1 USB/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/liangzhu/stm32/test/build/Middlewares/ST/STM32_USB_Device_Library/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s">
+         <Option target="CMSIS"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c">
+         <Option target="CMSIS"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c">
+         <Option target="HAL"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c">
+         <Option target="USB"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c">
+         <Option target="USB"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c">
+         <Option target="USB"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c">
+         <Option target="USB"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c">
+         <Option target="freertos"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h">
+         <Option target="freertos"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/croutine.c">
+         <Option target="freertos"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/event_groups.c">
+         <Option target="freertos"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/list.c">
+         <Option target="freertos"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/portable">
+         <Option target="freertos"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c">
+         <Option target="freertos"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c">
+         <Option target="freertos"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/queue.c">
+         <Option target="freertos"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/tasks.c">
+         <Option target="freertos"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/timers.c">
+         <Option target="freertos"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/adc.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/ahrs.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/attitude_controll.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/auto_mode.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/dma.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/esc.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/freertos.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/gpio.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/i2c.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/main.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/mavlink.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/mpu9250.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/pid.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/ppm_capture.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/spi.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/stm32f4xx_hal_msp.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/stm32f4xx_hal_timebase_TIM.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/stm32f4xx_it.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/syscalls.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/tim.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/ultrasonic.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/usart.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/usb_device.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/usbd_cdc_if.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/usbd_conf.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Src/usbd_desc.c">
+         <Option target="test.elf"/>
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/../../stm32-cmake/cmake/gcc_stm32f4.cmake">
+          <Option virtualFolder="CMake Files\..\..\stm32-cmake\cmake\" />
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/../../stm32-cmake/cmake/stm32_linker.cmake">
+          <Option virtualFolder="CMake Files\..\..\stm32-cmake\cmake\" />
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/STM32F4xx_HAL_Driver/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\Drivers\STM32F4xx_HAL_Driver\" />
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Drivers/CMSIS/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\Drivers\CMSIS\" />
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/Third_Party/FreeRTOS/Source/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\Middlewares\Third_Party\FreeRTOS\Source\" />
+      </Unit>
+      <Unit filename="/home/liangzhu/stm32/test/Middlewares/ST/STM32_USB_Device_Library/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\Middlewares\ST\STM32_USB_Device_Library\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>

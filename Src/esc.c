@@ -21,18 +21,26 @@ void Motor_Setup(void)
     int a;
     for(a=1;a<=9;a++)
     {
-        InitEsc(&Esc[a],125,250,125);
+        InitEsc(&Esc[a],1000,2000,1000);
     }
     __HAL_TIM_SetCounter(&htim5,0);
     __HAL_TIM_SetCounter(&htim8,0);
-    __HAL_TIM_SetCompare(&htim8,TIM_CHANNEL_3,125);
-    __HAL_TIM_SetCompare(&htim8,TIM_CHANNEL_4,125);
-    __HAL_TIM_SetCompare(&htim5,TIM_CHANNEL_3,125);
-    __HAL_TIM_SetCompare(&htim5,TIM_CHANNEL_4,125);
+    __HAL_TIM_SetCompare(&htim8,TIM_CHANNEL_3,1000);
+    __HAL_TIM_SetCompare(&htim8,TIM_CHANNEL_4,1000);
+    __HAL_TIM_SetCompare(&htim5,TIM_CHANNEL_3,1000);
+    __HAL_TIM_SetCompare(&htim5,TIM_CHANNEL_4,1000);
+    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_1,1000);
+    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_2,1000);
+    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_3,1000);
+    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_4,1000);
     HAL_TIM_PWM_Start_IT(&htim5,TIM_CHANNEL_3);
     HAL_TIM_PWM_Start_IT(&htim5,TIM_CHANNEL_4);
     HAL_TIM_PWM_Start_IT(&htim8,TIM_CHANNEL_3);
     HAL_TIM_PWM_Start_IT(&htim8,TIM_CHANNEL_4);
+    HAL_TIM_PWM_Start_IT(&htim1,TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start_IT(&htim1,TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start_IT(&htim1,TIM_CHANNEL_3);
+    HAL_TIM_PWM_Start_IT(&htim1,TIM_CHANNEL_4);
 }
 
 void InitEsc(Esc_t *esc, uint16_t pulse, uint16_t max,uint16_t min)
@@ -81,6 +89,26 @@ void Esc_Callback_TIM8(TIM_HandleTypeDef *htim)
     if(htim->Channel==HAL_TIM_ACTIVE_CHANNEL_4)
     {
       __HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, Esc[2].pulse);
+    }
+}
+
+void Esc_Callback_TIM1(TIM_HandleTypeDef *htim)
+{
+    if(htim->Channel==HAL_TIM_ACTIVE_CHANNEL_1)
+    {
+      __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, Esc[5].pulse);
+    }
+    if(htim->Channel==HAL_TIM_ACTIVE_CHANNEL_2)
+    {
+      __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, Esc[6].pulse);
+    }
+    if(htim->Channel==HAL_TIM_ACTIVE_CHANNEL_3)
+    {
+      __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, Esc[7].pulse);
+    }
+    if(htim->Channel==HAL_TIM_ACTIVE_CHANNEL_4)
+    {
+      __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, Esc[8].pulse);
     }
 }
 

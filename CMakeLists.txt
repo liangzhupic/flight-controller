@@ -48,7 +48,7 @@ Src/gpio.c      Src/spi.c     Src/stm32f4xx_it.c                Src/dma.c
 Src/usbd_cdc_if.c   Src/usbd_conf.c   Src/usbd_desc.c           Src/usb_device.c         
 Src/syscalls.c  Src/mpu9250.c  Src/mavlink.c    Src/i2c.c       Src/ppm_capture.c
 Src/ahrs.c      Src/attitude_controll.c           Src/pid.c      Src/esc.c
-Src/ultrasonic.c
+Src/ultrasonic.c Src/auto_mode.c
 )
 
 #set(source rtos )

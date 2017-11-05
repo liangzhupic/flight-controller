@@ -91,6 +91,10 @@ HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
     {
         Esc_Callback_TIM5(htim);
     }
+    if(htim->Instance == TIM1)
+    {
+        Esc_Callback_TIM1(htim);
+    }
     static  BaseType_t TaskWoken=pdTRUE;
     if(htim->Instance==TIM2)
     {
